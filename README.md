@@ -29,3 +29,13 @@
   <figcaption>Figura 2: Caso de uso de pagamento.
 </figcaption>
 </figure>
+
+## Criar os serviços candidatos e agrupá-los em contextos lógicos.
+- Pedido:
+  - Buscar e apresentar pedidos
+- Entrega:
+  - Identificar registro de entrega
+  - Registrar a validação da entrega
+  - Notificar a entrega
+- Mensageiro:
+  - Enviar email pro cliente notificando a entrega (legado)
