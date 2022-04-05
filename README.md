@@ -34,8 +34,19 @@
 - Pedido:
   - Buscar e apresentar pedidos
 - Entrega:
+  - Processar pendência de entrega
   - Identificar registro de entrega
   - Registrar a validação da entrega
-  - Notificar a entrega
+  - Gerar email de notificação
 - Mensageiro:
   - Enviar email pro cliente notificando a entrega (legado)
+
+## Aplicar os princípios de orientação a serviços e identificar sua composição
+- Pedido: _(Classe Java)_
+  - Buscar pedidos _(Método)_
+- Entrega: _(Classe Java)_
+  - Processar pendência _(Método)_
+  - Registrar pendência _(Método)_
+- Email: _(Classe Java)_
+  - Gerar email _(Método)_
+  - Enviar boleto pro cliente notificando a entrega _(Método)_
