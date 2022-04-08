@@ -43,7 +43,7 @@
 </figure>
 
 ## Modelo de Marcação dos Serviços
-<figure><img src=img/businessProcessDetails.png></img>
+<figure><img src=img/serviceMarcation.png></img>
   <figcaption>Figura 4: Marcação dos serviços - registro.
 </figcaption>
 </figure>
