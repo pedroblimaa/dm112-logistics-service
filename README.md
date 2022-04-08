@@ -30,12 +30,6 @@
 </figcaption>
 </figure>
 
-## Modelo de Processo de Negócio
-<figure><img src=img/businessProcessDetails.png></img>
-  <figcaption>Figura 3: Modelo de processo de negócio da plataforma – detalhamento.
-</figcaption>
-</figure>
-
 ## Modelo de Processo de Negócio - Detalhamento
 <figure><img src=img/businessProcessDetails.png></img>
   <figcaption>Figura 3: Modelo de processo de negócio da plataforma – detalhamento.
