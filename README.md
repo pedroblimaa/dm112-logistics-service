@@ -30,12 +30,6 @@
 </figcaption>
 </figure>
 
-## Modelo de Processo de Negócio
-<figure><img src=img/businessProcessDetails.png></img>
-  <figcaption>Figura 3: Modelo de processo de negócio da plataforma – detalhamento.
-</figcaption>
-</figure>
-
 ## Modelo de Processo de Negócio - Detalhamento
 <figure><img src=img/businessProcessDetails.png></img>
   <figcaption>Figura 3: Modelo de processo de negócio da plataforma – detalhamento.
@@ -43,7 +37,7 @@
 </figure>
 
 ## Modelo de Marcação dos Serviços
-<figure><img src=img/businessProcessDetails.png></img>
+<figure><img src=img/serviceMarcation.png></img>
   <figcaption>Figura 4: Marcação dos serviços - registro.
 </figcaption>
 </figure>
