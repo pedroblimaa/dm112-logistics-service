@@ -12,8 +12,10 @@ public class DeliveryOrder {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Id
   private Long id;
+
   private String name;
   private Boolean delivered = false;
+
   @ManyToOne
   private Deliveryman deliveryman;
 

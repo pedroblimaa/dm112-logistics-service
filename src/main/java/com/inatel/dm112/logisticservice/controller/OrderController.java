@@ -1,10 +1,11 @@
 package com.inatel.dm112.logisticservice.controller;
 
 import com.inatel.dm112.logisticservice.dto.DeliveryRegisterDto;
+import com.inatel.dm112.logisticservice.dto.ErrorHandleDto;
 import com.inatel.dm112.logisticservice.dto.OrderDto;
 import com.inatel.dm112.logisticservice.model.DeliveryOrder;
 import com.inatel.dm112.logisticservice.repository.DeliveryOrderRepository;
-import java.util.ArrayList;
+import com.inatel.dm112.logisticservice.service.OrderService;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,61 +25,31 @@ public class OrderController {
   @Autowired
   private DeliveryOrderRepository orderRepo;
 
-  //CREATE A SERVICE AND ORGANIZE THE CODE TO USE IT
+  @Autowired
+  private OrderService orderService;
 
   @GetMapping
-  public ResponseEntity<List<OrderDto>> getList(
-    @RequestParam(required = false) Long deliverymanId
-  ) {
-    // FIX THIS DELIVERYMAN == NULL
-    if (deliverymanId == null) {
-      return ResponseEntity.ok(new ArrayList<>());
-    }
+  public ResponseEntity<List<OrderDto>> getList(@RequestParam(required = false) Long deliverymanId) {
+    List<OrderDto> orders = orderService.getDeliverymanOrders(deliverymanId);
 
-    List<DeliveryOrder> orders = orderRepo.findOrdersByDeliverymanId(
-      deliverymanId
-    );
-    List<OrderDto> ordersDto = OrderDto.convertList(orders);
-
-    return ResponseEntity.ok(ordersDto);
+    return ResponseEntity.ok(orders);
   }
 
   @GetMapping("/open")
-  public ResponseEntity<List<OrderDto>> getOpenList(
-    @RequestParam(required = false) Long deliverymanId
-  ) {
-    // FIX THIS DELIVERYMAN == NULL
-    if (deliverymanId == null) {
-      return ResponseEntity.ok(new ArrayList<>());
-    }
+  public ResponseEntity<List<OrderDto>> getOpenList(@RequestParam(required = false) Long deliverymanId) {
+    List<OrderDto> orders = orderService.getDeliverymanOpenOrders(deliverymanId);
 
-    List<DeliveryOrder> orders = orderRepo.findOpenOrdersByDeliverymanId(
-      deliverymanId
-    );
-    List<OrderDto> ordersDto = OrderDto.convertList(orders);
-
-    return ResponseEntity.ok(ordersDto);
+    return ResponseEntity.ok(orders);
   }
 
   @Transactional
   @PostMapping("/register")
-  public ResponseEntity<OrderDto> registerDelivery(
-    @RequestBody DeliveryRegisterDto registerDelivery
-  ) {
-    Optional<DeliveryOrder> order = orderRepo.findDeliveryOrderById(
-      registerDelivery.getOrderId()
-    );
+  public ResponseEntity<OrderDto> registerDelivery(@RequestBody DeliveryRegisterDto registerDelivery) {
+    Optional<DeliveryOrder> order = orderRepo.findDeliveryOrderById(registerDelivery.getOrderId());
 
-    if (
-      order.isPresent() &&
-      order.get().getDeliveryman().getId() ==
-      registerDelivery.getDeliverymanId() &&
-      order.get().getDelivered() == false
-    ) {
-      order.get().setDelivered();
-      return ResponseEntity.ok(new OrderDto(order.get()));
-    }
+    orderService.verifyOrderRegistration(order, registerDelivery.getDeliverymanId());
 
-    return ResponseEntity.badRequest().build();
+    order.get().setDelivered();
+    return ResponseEntity.ok(new OrderDto(order.get()));
   }
 }
