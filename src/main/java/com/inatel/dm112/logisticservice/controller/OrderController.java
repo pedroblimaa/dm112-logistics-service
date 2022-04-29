@@ -1,11 +1,13 @@
 package com.inatel.dm112.logisticservice.controller;
 
 import com.inatel.dm112.logisticservice.dto.DeliveryRegisterDto;
-import com.inatel.dm112.logisticservice.dto.ErrorHandleDto;
 import com.inatel.dm112.logisticservice.dto.OrderDto;
 import com.inatel.dm112.logisticservice.model.DeliveryOrder;
 import com.inatel.dm112.logisticservice.repository.DeliveryOrderRepository;
+import com.inatel.dm112.logisticservice.service.MailService;
 import com.inatel.dm112.logisticservice.service.OrderService;
+
+import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +29,9 @@ public class OrderController {
 
   @Autowired
   private OrderService orderService;
+
+  @Autowired
+  private MailService mailService;
 
   @GetMapping
   public ResponseEntity<List<OrderDto>> getList(@RequestParam(required = false) Long deliverymanId) {
@@ -50,6 +55,7 @@ public class OrderController {
     orderService.verifyOrderRegistration(order, registerDelivery.getDeliverymanId());
 
     order.get().setDelivered();
+    mailService.mailNotify(order.get());
     return ResponseEntity.ok(new OrderDto(order.get()));
   }
 }

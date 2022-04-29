@@ -1,6 +1,5 @@
 package com.inatel.dm112.logisticservice.service;
 
-import com.inatel.dm112.logisticservice.dto.DeliveryRegisterDto;
 import com.inatel.dm112.logisticservice.dto.OrderDto;
 import com.inatel.dm112.logisticservice.model.DeliveryOrder;
 import com.inatel.dm112.logisticservice.repository.DeliveryOrderRepository;

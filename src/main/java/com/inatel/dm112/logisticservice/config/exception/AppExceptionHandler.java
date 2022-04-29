@@ -1,5 +1,7 @@
 package com.inatel.dm112.logisticservice.config.exception;
 
+import java.net.URISyntaxException;
+
 import com.inatel.dm112.logisticservice.dto.ErrorHandleDto;
 
 import org.springframework.http.HttpStatus;
